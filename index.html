@@ -3,142 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syeikh Prompt Master (SPM) | State of Protocol</title>
+    <title>SPM | Syeikh Prompt Master</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="app-container">
-        <header class="app-header">
-            <div class="brand">
-                <div class="logo-box">SPM</div>
-                <div class="brand-text">
-                    <h1>Syeikh Prompt Master</h1>
-                    <p>Advanced Prompt Engineering System v1.5</p>
-                </div>
+    <div class="sf-container">
+        <!-- TOP NAVIGATION (APPLE STYLE) -->
+        <nav class="sf-nav">
+            <div class="nav-content">
+                <span class="system-status">● SPM Console v2.0</span>
+                <span class="org-name">State of Protocol</span>
             </div>
+        </nav>
+
+        <header class="sf-header">
+            <h1>Syeikh Prompt Master</h1>
+            <p>Sistem Kejuruteraan Prompt Gred-Industri</p>
         </header>
 
-        <main class="app-main">
-            <!-- SEKSYEN 1: PROFIL PERIBADI -->
-            <section class="card section-profile">
-                <div class="section-title">
-                    <span class="step-num">01</span>
-                    <h2>Profil Strategik</h2>
+        <main class="sf-main">
+            <!-- INPUT SECTION -->
+            <section class="cli-window">
+                <div class="window-header">
+                    <div class="dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="window-title">input_parameters.sh</div>
                 </div>
-                <div class="grid-profile">
-                    <div class="field">
-                        <label for="fullName">Nama Penuh</label>
-                        <input type="text" id="fullName" placeholder="Contoh: Ahmad Syeikh" class="live-input">
-                    </div>
-                    <div class="field">
-                        <label for="dob">Tarikh Lahir</label>
-                        <input type="date" id="dob" class="live-input">
-                    </div>
-                    <div class="field field-full">
-                        <label for="idol">Idola / Model Rujukan Strategik</label>
-                        <div class="search-box">
-                            <input type="text" id="idol" placeholder="Elon Musk / Tun M / Steve Jobs" class="live-input">
-                            <button id="researchIdolBtn" class="btn-research" title="Jana Penyelidikan Gemini">
-                                🔍 Research
-                            </button>
+                
+                <div class="window-body">
+                    <div class="cli-group">
+                        <label>IDENTITI PENGGUNA</label>
+                        <div class="cli-input-row">
+                            <span class="prompt-char">~</span>
+                            <input type="text" id="fullName" placeholder="Nama Penuh" class="live-input">
+                        </div>
+                        <div class="cli-input-row">
+                            <span class="prompt-char">~</span>
+                            <input type="date" id="dob" class="live-input">
                         </div>
                     </div>
-                    <div class="field field-full">
-                        <label for="ambition">Fantasi / Objektif Utama Hidup</label>
-                        <textarea id="ambition" rows="2" placeholder="Apakah impian terbesar anda?" class="live-input"></textarea>
+
+                    <div class="cli-group">
+                        <label>RUJUKAN STRATEGIK (IDOLA)</label>
+                        <div class="cli-input-row">
+                            <span class="prompt-char">#</span>
+                            <input type="text" id="idol" placeholder="Elon Musk / Tun M" class="live-input">
+                            <button id="researchIdolBtn" class="cli-btn-action">SEARCH</button>
+                        </div>
+                    </div>
+
+                    <div class="cli-group">
+                        <label>BIDANG INDUSTRI (TICK MODE)</label>
+                        <div class="industry-selector">
+                            <label class="cli-checkbox"><input type="checkbox" name="industry" value="Digital & AI" class="live-check"> <span>Digital & AI</span></label>
+                            <label class="cli-checkbox"><input type="checkbox" name="industry" value="FinTech" class="live-check"> <span>FinTech</span></label>
+                            <label class="cli-checkbox"><input type="checkbox" name="industry" value="GreenTech" class="live-check"> <span>GreenTech</span></label>
+                            <label class="cli-checkbox"><input type="checkbox" name="industry" value="Cybersecurity" class="live-check"> <span>Cybersecurity</span></label>
+                            <label class="cli-checkbox"><input type="checkbox" name="industry" value="Global Strategy" class="live-check"> <span>Strategy</span></label>
+                        </div>
+                    </div>
+
+                    <div class="cli-group">
+                        <label>TUGASAN UTAMA</label>
+                        <textarea id="task" placeholder="Huraikan tugasan anda..." class="live-input"></textarea>
+                    </div>
+
+                    <div class="cli-group">
+                        <div class="cli-grid-2">
+                            <select id="format" class="live-input">
+                                <option value="Step-by-Step">--format=step</option>
+                                <option value="Table">--format=table</option>
+                                <option value="Analytical">--format=essay</option>
+                            </select>
+                            <select id="tone" class="live-input">
+                                <option value="Professional">--tone=pro</option>
+                                <option value="Creative">--tone=creative</option>
+                                <option value="Technical">--tone=tech</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- SEKSYEN 2: INDUSTRI (TICK MODE) -->
-            <section class="card section-industry">
-                <div class="section-title">
-                    <span class="step-num">02</span>
-                    <h2>Mod Industri (High-Impact Clusters)</h2>
-                </div>
-                <div class="industry-grid">
-                    <div class="cluster">
-                        <h3>Digital & AI</h3>
-                        <label><input type="checkbox" name="industry" value="Prompt Engineering & AIOps" class="live-check"> Prompt Engineering</label>
-                        <label><input type="checkbox" name="industry" value="Cybersecurity" class="live-check"> Cybersecurity</label>
-                        <label><input type="checkbox" name="industry" value="Cloud Computing" class="live-check"> Cloud Computing</label>
-                    </div>
-                    <div class="cluster">
-                        <h3>FinTech & Data</h3>
-                        <label><input type="checkbox" name="industry" value="Blockchain & Web3" class="live-check"> Blockchain & Web3</label>
-                        <label><input type="checkbox" name="industry" value="Big Data Analytics" class="live-check"> Big Data Analytics</label>
-                        <label><input type="checkbox" name="industry" value="Global Payments" class="live-check"> Global Payments</label>
-                    </div>
-                    <div class="cluster">
-                        <h3>GreenTech & IoT</h3>
-                        <label><input type="checkbox" name="industry" value="Renewable Energy" class="live-check"> Renewable Energy</label>
-                        <label><input type="checkbox" name="industry" value="Smart Cities & IoT" class="live-check"> Smart Cities & IoT</label>
-                        <label><input type="checkbox" name="industry" value="Supply Chain 4.0" class="live-check"> Supply Chain 4.0</label>
-                    </div>
-                    <div class="cluster">
-                        <h3>Health & Strategy</h3>
-                        <label><input type="checkbox" name="industry" value="Bioinformatics" class="live-check"> Bioinformatics</label>
-                        <label><input type="checkbox" name="industry" value="Digital Transformation" class="live-check"> Dig. Transformation</label>
-                        <label><input type="checkbox" name="industry" value="EdTech" class="live-check"> EdTech</label>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SEKSYEN 3: KONFIGURASI TUGASAN -->
-            <section class="card section-task">
-                <div class="section-title">
-                    <span class="step-num">03</span>
-                    <h2>Konfigurasi Tugasan</h2>
-                </div>
-                <div class="field">
-                    <label for="task">Tugasan Utama AI</label>
-                    <textarea id="task" rows="3" placeholder="Jelaskan tugasan anda secara spesifik..." class="live-input"></textarea>
-                </div>
-                <div class="grid-options">
-                    <div class="field">
-                        <label for="format">Format Output</label>
-                        <select id="format" class="live-input">
-                            <option value="Langkah-demi-langkah">Step-by-Step</option>
-                            <option value="Jadual Strategik">Jadual Strategik</option>
-                            <option value="Esei Analitikal">Esei Analitikal</option>
-                        </select>
-                    </div>
-                    <div class="field">
-                        <label for="tone">Nada Bicara</label>
-                        <select id="tone" class="live-input">
-                            <option value="Profesional & Berwibawa">Profesional</option>
-                            <option value="Kreatif & Inspirasi">Inspiratif</option>
-                            <option value="Teknikal & Terperinci">Teknikal</option>
-                        </select>
-                    </div>
-                </div>
-                <button id="generateBtn" class="btn-generate-manual">Jana Prompt Manual</button>
-            </section>
-
-            <!-- SEKSYEN OUTPUT: LIVE PREVIEW -->
-            <section class="card section-output">
-                <div class="output-header">
-                    <div class="output-meta">
-                        <h2>Master Prompt Output</h2>
-                        <label class="live-preview-switch">
+            <!-- OUTPUT SECTION (TERMINAL STYLE) -->
+            <section class="cli-window terminal-window">
+                <div class="window-header">
+                    <div class="window-title">prompt_output.log</div>
+                    <div class="window-controls">
+                        <label class="live-toggle">
                             <input type="checkbox" id="liveToggle" checked>
-                            <span class="toggle-slider"></span>
-                            <span class="toggle-text">Live Preview</span>
+                            <span class="toggle-text">LIVE_PREVIEW</span>
                         </label>
+                        <button id="copyBtn" class="cli-btn-primary">COPY_BUFFER</button>
                     </div>
-                    <button id="copyBtn" class="btn-copy">
-                        Salin Prompt
-                    </button>
                 </div>
-                <div class="output-container">
-                    <pre id="promptOutput" class="prompt-box">Menunggu data input lengkap...</pre>
+                <div class="window-body">
+                    <pre id="promptOutput" class="terminal-text">Initializing Syeikh Prompt Master...</pre>
                 </div>
             </section>
         </main>
 
-        <footer class="app-footer">
-            <p>&copy; 2026 State of Protocol. Optimized for Gemini CLI/Web Engine.</p>
+        <footer class="sf-footer">
+            <p>DESIGNED BY STATE OF PROTOCOL IN CALIFORNIA (VIRTUAL)</p>
         </footer>
     </div>
     <script src="script.js"></script>
