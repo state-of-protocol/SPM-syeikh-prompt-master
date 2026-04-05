@@ -12,7 +12,7 @@
         <header>
             <div class="logo">SPM</div>
             <h1>Syeikh Prompt Master</h1>
-            <p class="subtitle">Penjana Prompt Berdasarkan Profil Peribadi & Industri Global</p>
+            <p class="subtitle">Sistem Penjana Prompt Pintar dengan Live Preview & Gemini Integration</p>
         </header>
 
         <main>
@@ -21,72 +21,68 @@
                 <h2>1. Profil Peribadi</h2>
                 <div class="form-group">
                     <label for="fullName">Nama Penuh</label>
-                    <input type="text" id="fullName" placeholder="Masukkan nama penuh anda...">
+                    <input type="text" id="fullName" placeholder="Masukkan nama penuh anda..." class="live-input">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="dob">Tarikh Lahir</label>
-                        <input type="date" id="dob">
+                        <input type="date" id="dob" class="live-input">
                     </div>
                     <div class="form-group">
-                        <label for="idol">Idola / Rujukan (Searchable)</label>
-                        <input type="text" id="idol" placeholder="Contoh: Elon Musk / Tun M">
+                        <label for="idol">Idola / Rujukan Strategik</label>
+                        <div class="input-with-btn">
+                            <input type="text" id="idol" placeholder="Elon Musk / Tun M" class="live-input">
+                            <button id="researchIdolBtn" class="btn-small" title="Jana Prompt Carian Gemini">🔍 Research</button>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="ambition">Fantasi / Cita-cita Hidup</label>
-                    <textarea id="ambition" rows="2" placeholder="Apakah impian fantasi atau objektif hidup anda?"></textarea>
+                    <textarea id="ambition" rows="2" placeholder="Impian atau objektif hidup anda..." class="live-input"></textarea>
                 </div>
             </section>
 
             <!-- SEKSYEN 2: MOD INDUSTRI (TICK MODE) -->
             <section class="card industry-card">
                 <h2>2. Bidang Industri Berimpak Tinggi</h2>
-                <p class="info-text">Sila pilih bidang yang relevan dengan tugasan anda:</p>
-                
                 <div class="industry-grid">
                     <div class="cluster">
                         <h3>Digital & AI</h3>
-                        <label><input type="checkbox" name="industry" value="Prompt Engineering & AIOps"> Prompt Engineering & AIOps</label>
-                        <label><input type="checkbox" name="industry" value="Cybersecurity"> Cybersecurity</label>
-                        <label><input type="checkbox" name="industry" value="Cloud Computing"> Cloud Computing</label>
+                        <label><input type="checkbox" name="industry" value="Prompt Engineering & AIOps" class="live-check"> Prompt Engineering & AIOps</label>
+                        <label><input type="checkbox" name="industry" value="Cybersecurity" class="live-check"> Cybersecurity</label>
+                        <label><input type="checkbox" name="industry" value="Cloud Computing" class="live-check"> Cloud Computing</label>
                     </div>
                     <div class="cluster">
                         <h3>FinTech</h3>
-                        <label><input type="checkbox" name="industry" value="Blockchain & Web3"> Blockchain & Web3</label>
-                        <label><input type="checkbox" name="industry" value="Big Data Analytics"> Big Data Analytics</label>
-                        <label><input type="checkbox" name="industry" value="Global Payment Systems"> Global Payment Systems</label>
+                        <label><input type="checkbox" name="industry" value="Blockchain & Web3" class="live-check"> Blockchain & Web3</label>
+                        <label><input type="checkbox" name="industry" value="Big Data Analytics" class="live-check"> Big Data Analytics</label>
+                        <label><input type="checkbox" name="industry" value="Global Payment Systems" class="live-check"> Global Payment Systems</label>
                     </div>
                     <div class="cluster">
                         <h3>GreenTech</h3>
-                        <label><input type="checkbox" name="industry" value="Renewable Energy"> Renewable Energy</label>
-                        <label><input type="checkbox" name="industry" value="Smart Cities & IoT"> Smart Cities & IoT</label>
-                        <label><input type="checkbox" name="industry" value="Supply Chain 4.0"> Supply Chain 4.0</label>
+                        <label><input type="checkbox" name="industry" value="Renewable Energy" class="live-check"> Renewable Energy</label>
+                        <label><input type="checkbox" name="industry" value="Smart Cities & IoT" class="live-check"> Smart Cities & IoT</label>
+                        <label><input type="checkbox" name="industry" value="Supply Chain 4.0" class="live-check"> Supply Chain 4.0</label>
                     </div>
                     <div class="cluster">
                         <h3>Health & Bio</h3>
-                        <label><input type="checkbox" name="industry" value="Bioinformatics & Genomics"> Bioinformatics & Genomics</label>
-                        <label><input type="checkbox" name="industry" value="Telemedicine & Robotics"> Telemedicine & Robotics</label>
-                    </div>
-                    <div class="cluster">
-                        <h3>Strategy & Education</h3>
-                        <label><input type="checkbox" name="industry" value="EdTech"> EdTech</label>
-                        <label><input type="checkbox" name="industry" value="Digital Transformation"> Digital Transformation</label>
+                        <label><input type="checkbox" name="industry" value="Bioinformatics & Genomics" class="live-check"> Bioinformatics & Genomics</label>
+                        <label><input type="checkbox" name="industry" value="Telemedicine & Robotics" class="live-check"> Telemedicine & Robotics</label>
                     </div>
                 </div>
             </section>
 
-            <!-- SEKSYEN 3: TUGASAN & OUTPUT -->
+            <!-- SEKSYEN 3: TUGASAN -->
             <section class="card task-card">
                 <h2>3. Konfigurasi Tugasan</h2>
                 <div class="form-group">
                     <label for="task">Tugasan Utama</label>
-                    <textarea id="task" rows="4" placeholder="Nyatakan tugasan spesifik yang anda mahu selesaikan..."></textarea>
+                    <textarea id="task" rows="3" placeholder="Apa yang anda mahu AI selesaikan?" class="live-input"></textarea>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="format">Format Output</label>
-                        <select id="format">
+                        <select id="format" class="live-input">
                             <option value="Langkah-demi-langkah">Langkah-demi-langkah</option>
                             <option value="Jadual Perbandingan">Jadual Perbandingan</option>
                             <option value="Esei Analitikal">Esei Analitikal</option>
@@ -94,29 +90,39 @@
                     </div>
                     <div class="form-group">
                         <label for="tone">Nada Bicara</label>
-                        <select id="tone">
+                        <select id="tone" class="live-input">
                             <option value="Profesional & Berwibawa">Profesional & Berwibawa</option>
                             <option value="Kreatif & Inspirasi">Kreatif & Inspirasi</option>
                             <option value="Teknikal & Terperinci">Teknikal & Terperinci</option>
                         </select>
                     </div>
                 </div>
-                <button id="generateBtn" class="btn-primary">Jana Profil & Prompt Master</button>
+                <button id="generateBtn" class="btn-primary">Jana Prompt Manual</button>
             </section>
 
+            <!-- SEKSYEN OUTPUT: LIVE PREVIEW -->
             <section class="card output-card">
                 <div class="output-header">
-                    <h2>Hasil Penjanaan</h2>
-                    <button id="copyBtn" class="btn-icon" title="Salin Prompt">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-                    </button>
+                    <div class="header-left">
+                        <h2>Hasil Penjanaan</h2>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="livePreviewToggle" checked>
+                            <span class="slider"></span>
+                            <span class="toggle-label">Live Preview</span>
+                        </label>
+                    </div>
+                    <div class="header-right">
+                        <button id="copyBtn" class="btn-icon" title="Salin Prompt">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                        </button>
+                    </div>
                 </div>
-                <div id="promptOutput" class="prompt-display">Sila lengkapkan profil dan pilih industri untuk menjana...</div>
+                <div id="promptOutput" class="prompt-display">Sila lengkapkan profil untuk melihat preview...</div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2026 State of Protocol. Dikembangkan untuk kecemerlangan AI.</p>
+            <p>&copy; 2026 State of Protocol. Optimized for Gemini CLI & Web UI.</p>
         </footer>
     </div>
     <script src="script.js"></script>

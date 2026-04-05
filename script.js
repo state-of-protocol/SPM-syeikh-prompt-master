@@ -1,71 +1,88 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const liveInputs = document.querySelectorAll('.live-input, .live-check');
+    const liveToggle = document.getElementById('livePreviewToggle');
+    const promptOutput = document.getElementById('promptOutput');
+    const researchBtn = document.getElementById('researchIdolBtn');
     const generateBtn = document.getElementById('generateBtn');
     const copyBtn = document.getElementById('copyBtn');
-    const promptOutput = document.getElementById('promptOutput');
 
-    generateBtn.addEventListener('click', () => {
-        // Capture Personal Info
+    // FUNCTION TO GENERATE PROMPT
+    const generateMasterPrompt = () => {
         const name = document.getElementById('fullName').value || "Individu Berwawasan";
         const dob = document.getElementById('dob').value || "N/A";
         const idol = document.getElementById('idol').value || "Tokoh Global";
-        const ambition = document.getElementById('ambition').value || "Mencapai Kecemerlangan Industri";
-
-        // Capture Selected Industries (Tick Mode)
-        const selectedIndustries = Array.from(document.querySelectorAll('input[name="industry"]:checked'))
+        const ambition = document.getElementById('ambition').value || "Mencapai Kecemerlangan";
+        
+        const industries = Array.from(document.querySelectorAll('input[name="industry"]:checked'))
             .map(cb => cb.value);
-
+        
         const task = document.getElementById('task').value;
         const format = document.getElementById('format').value;
         const tone = document.getElementById('tone').value;
 
-        if (!task) {
-            alert("Sila masukkan tugasan utama anda!");
+        if (!task || industries.length === 0) {
+            promptOutput.textContent = "Menunggu input lengkap (Tugasan & Bidang Industri)...";
             return;
         }
 
-        if (selectedIndustries.length === 0) {
-            alert("Sila pilih sekurang-kurangnya satu bidang industri!");
-            return;
-        }
+        const industryStr = industries.join(", ");
 
-        const industryList = selectedIndustries.join(", ");
+        const prompt = `[SYSTEM_ROLE]
+Bertindak sebagai Pakar Hibrid dalam [${industryStr}] dengan DNA strategi [${idol}].
 
-        const masterPrompt = `[PROFIL PENGGUNA]
-Nama: ${name}
-Tarikh Lahir: ${dob}
-Idola/Rujukan: ${idol}
-Cita-cita: ${ambition}
+[USER_PROFILE]
+Subjek: ${name}
+Visi: ${ambition}
+Rujukan: ${idol}
 
-[KONTEKS INDUSTRI]
-Kepakaran Terpilih: ${industryList}
+[OBJECTIVE]
+${task}
 
-[TUGASAN STRATEGIK]
-Tugas Utama: ${task}
+[CONSTRAINTS]
+1. Format: ${format}
+2. Nada: ${tone}
+3. Integrasi: Gabungkan falsafah ${idol} ke dalam penyelesaian untuk ${name}.
+4. Standard: Gunakan metrik industri berimpak tinggi.
 
-[ARAHAN KHUSUS]
-1. Bertindak sebagai gabungan Pakar Kanan dalam bidang [${industryList}] dengan etos kerja dan visi yang diinspirasikan oleh [${idol}].
-2. Gunakan profil peribadi pengguna (Nama & Cita-cita) untuk menyesuaikan penyelesaian supaya relevan dengan matlamat jangka panjang beliau.
-3. Strukturkan jawapan dalam format: ${format}.
-4. Nada bicara mestilah ${tone}.
-5. Berikan rasional teknikal bagi setiap langkah yang dicadangkan.
+[GEMINI_SEARCH_TRIGGER]
+Sila rujuk data terkini mengenai kriteria kejayaan ${idol} dalam konteks ${industryStr} untuk memberikan jawapan yang paling relevan bagi ${name}.
 
-[STRUKTUR OUTPUT]
-- Analisis Profil & Kesesuaian Industri
-- Pelan Tindakan Berimpak Tinggi (Step-by-Step)
-- Integrasi Visi & Amalan Terbaik (Model: ${idol})
-- Checklist Kualiti Akhir
+Sila jana output sekarang.`;
 
-Sila mulakan penjanaan dengan kualiti profesional tertinggi.`;
+        promptOutput.textContent = prompt;
+    };
 
-        promptOutput.textContent = masterPrompt;
+    // LIVE PREVIEW LISTENERS
+    liveInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            if (liveToggle.checked) generateMasterPrompt();
+        });
+        input.addEventListener('change', () => {
+            if (liveToggle.checked) generateMasterPrompt();
+        });
     });
 
-    copyBtn.addEventListener('click', () => {
-        const text = promptOutput.textContent;
-        if (text && !text.includes('Sila lengkapkan')) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Prompt Master telah berjaya disalin!");
-            });
+    // RESEARCH IDOL BUTTON (GEMINI HELPER)
+    researchBtn.addEventListener('click', () => {
+        const idol = document.getElementById('idol').value;
+        if (!idol) {
+            alert("Sila masukkan nama idola terlebih dahulu!");
+            return;
         }
+
+        const researchPrompt = `Cari maklumat terperinci mengenai etos kerja, strategi utama, dan falsafah kejayaan ${idol}. Fokus kepada bagaimana beliau menguruskan projek berskala besar dan impak tinggi. Sila berikan ringkasan dalam bentuk poin untuk saya gunakan sebagai rujukan persona AI.`;
+        
+        promptOutput.textContent = `[SALIN PROMPT INI KE GEMINI CLI/WEB UNTUK PENYELIDIKAN]\n\n${researchPrompt}`;
+        alert("Prompt Penyelidikan Idola telah dijana!");
+    });
+
+    // MANUAL GENERATE
+    generateBtn.addEventListener('click', generateMasterPrompt);
+
+    // COPY FUNCTION
+    copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(promptOutput.textContent).then(() => {
+            alert("Prompt telah disalin!");
+        });
     });
 });
