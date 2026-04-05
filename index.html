@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syeikh Prompt Master (SPM) | State of Protocol</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">SPM</div>
+            <h1>Syeikh Prompt Master</h1>
+            <p class="subtitle">Penjana Prompt Berstruktur & Profesional untuk AI</p>
+        </header>
+
+        <main>
+            <section class="card input-card">
+                <div class="form-group">
+                    <label for="role">Peranan / Persona</label>
+                    <input type="text" id="role" placeholder="Contoh: Pakar Pemasaran Digital Senior">
+                </div>
+
+                <div class="form-group">
+                    <label for="task">Tugasan Utama</label>
+                    <textarea id="task" rows="5" placeholder="Terangkan apa yang anda mahu AI lakukan secara terperinci..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="format">Format Output</label>
+                        <select id="format">
+                            <option value="Langkah-demi-langkah">Langkah-demi-langkah</option>
+                            <option value="Jadual Perbandingan">Jadual Perbandingan</option>
+                            <option value="Esei Analitikal">Esei Analitikal</option>
+                            <option value="Kod Pengaturcaraan">Kod Pengaturcaraan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tone">Nada Bicara</label>
+                        <select id="tone">
+                            <option value="Profesional & Berwibawa">Profesional & Berwibawa</option>
+                            <option value="Kreatif & Inspirasi">Kreatif & Inspirasi</option>
+                            <option value="Teknikal & Terperinci">Teknikal & Terperinci</option>
+                            <option value="Mesra & Santai">Mesra & Santai</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button id="generateBtn" class="btn-primary">Jana Prompt Master</button>
+            </section>
+
+            <section class="card output-card">
+                <div class="output-header">
+                    <h2>Hasil Penjanaan</h2>
+                    <button id="copyBtn" class="btn-icon" title="Salin Prompt">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                    </button>
+                </div>
+                <div id="promptOutput" class="prompt-display">Sila lengkapkan maklumat di atas untuk menjana prompt...</div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 State of Protocol. Dikembangkan untuk kecemerlangan AI.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
