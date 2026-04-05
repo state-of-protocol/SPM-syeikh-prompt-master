@@ -12,21 +12,77 @@
         <header>
             <div class="logo">SPM</div>
             <h1>Syeikh Prompt Master</h1>
-            <p class="subtitle">Penjana Prompt Berstruktur & Profesional untuk AI</p>
+            <p class="subtitle">Penjana Prompt Berdasarkan Profil Peribadi & Industri Global</p>
         </header>
 
         <main>
-            <section class="card input-card">
+            <!-- SEKSYEN 1: PROFIL PERIBADI -->
+            <section class="card profile-card">
+                <h2>1. Profil Peribadi</h2>
                 <div class="form-group">
-                    <label for="role">Peranan / Persona</label>
-                    <input type="text" id="role" placeholder="Contoh: Pakar Pemasaran Digital Senior">
+                    <label for="fullName">Nama Penuh</label>
+                    <input type="text" id="fullName" placeholder="Masukkan nama penuh anda...">
                 </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dob">Tarikh Lahir</label>
+                        <input type="date" id="dob">
+                    </div>
+                    <div class="form-group">
+                        <label for="idol">Idola / Rujukan (Searchable)</label>
+                        <input type="text" id="idol" placeholder="Contoh: Elon Musk / Tun M">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ambition">Fantasi / Cita-cita Hidup</label>
+                    <textarea id="ambition" rows="2" placeholder="Apakah impian fantasi atau objektif hidup anda?"></textarea>
+                </div>
+            </section>
 
+            <!-- SEKSYEN 2: MOD INDUSTRI (TICK MODE) -->
+            <section class="card industry-card">
+                <h2>2. Bidang Industri Berimpak Tinggi</h2>
+                <p class="info-text">Sila pilih bidang yang relevan dengan tugasan anda:</p>
+                
+                <div class="industry-grid">
+                    <div class="cluster">
+                        <h3>Digital & AI</h3>
+                        <label><input type="checkbox" name="industry" value="Prompt Engineering & AIOps"> Prompt Engineering & AIOps</label>
+                        <label><input type="checkbox" name="industry" value="Cybersecurity"> Cybersecurity</label>
+                        <label><input type="checkbox" name="industry" value="Cloud Computing"> Cloud Computing</label>
+                    </div>
+                    <div class="cluster">
+                        <h3>FinTech</h3>
+                        <label><input type="checkbox" name="industry" value="Blockchain & Web3"> Blockchain & Web3</label>
+                        <label><input type="checkbox" name="industry" value="Big Data Analytics"> Big Data Analytics</label>
+                        <label><input type="checkbox" name="industry" value="Global Payment Systems"> Global Payment Systems</label>
+                    </div>
+                    <div class="cluster">
+                        <h3>GreenTech</h3>
+                        <label><input type="checkbox" name="industry" value="Renewable Energy"> Renewable Energy</label>
+                        <label><input type="checkbox" name="industry" value="Smart Cities & IoT"> Smart Cities & IoT</label>
+                        <label><input type="checkbox" name="industry" value="Supply Chain 4.0"> Supply Chain 4.0</label>
+                    </div>
+                    <div class="cluster">
+                        <h3>Health & Bio</h3>
+                        <label><input type="checkbox" name="industry" value="Bioinformatics & Genomics"> Bioinformatics & Genomics</label>
+                        <label><input type="checkbox" name="industry" value="Telemedicine & Robotics"> Telemedicine & Robotics</label>
+                    </div>
+                    <div class="cluster">
+                        <h3>Strategy & Education</h3>
+                        <label><input type="checkbox" name="industry" value="EdTech"> EdTech</label>
+                        <label><input type="checkbox" name="industry" value="Digital Transformation"> Digital Transformation</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEKSYEN 3: TUGASAN & OUTPUT -->
+            <section class="card task-card">
+                <h2>3. Konfigurasi Tugasan</h2>
                 <div class="form-group">
                     <label for="task">Tugasan Utama</label>
-                    <textarea id="task" rows="5" placeholder="Terangkan apa yang anda mahu AI lakukan secara terperinci..."></textarea>
+                    <textarea id="task" rows="4" placeholder="Nyatakan tugasan spesifik yang anda mahu selesaikan..."></textarea>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <label for="format">Format Output</label>
@@ -34,7 +90,6 @@
                             <option value="Langkah-demi-langkah">Langkah-demi-langkah</option>
                             <option value="Jadual Perbandingan">Jadual Perbandingan</option>
                             <option value="Esei Analitikal">Esei Analitikal</option>
-                            <option value="Kod Pengaturcaraan">Kod Pengaturcaraan</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -43,12 +98,10 @@
                             <option value="Profesional & Berwibawa">Profesional & Berwibawa</option>
                             <option value="Kreatif & Inspirasi">Kreatif & Inspirasi</option>
                             <option value="Teknikal & Terperinci">Teknikal & Terperinci</option>
-                            <option value="Mesra & Santai">Mesra & Santai</option>
                         </select>
                     </div>
                 </div>
-
-                <button id="generateBtn" class="btn-primary">Jana Prompt Master</button>
+                <button id="generateBtn" class="btn-primary">Jana Profil & Prompt Master</button>
             </section>
 
             <section class="card output-card">
@@ -58,7 +111,7 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
                     </button>
                 </div>
-                <div id="promptOutput" class="prompt-display">Sila lengkapkan maklumat di atas untuk menjana prompt...</div>
+                <div id="promptOutput" class="prompt-display">Sila lengkapkan profil dan pilih industri untuk menjana...</div>
             </section>
         </main>
 
