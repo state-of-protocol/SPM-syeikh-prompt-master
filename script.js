@@ -2,54 +2,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const liveInputs = document.querySelectorAll('.live-input, .live-check');
     const liveToggle = document.getElementById('liveToggle');
     const promptOutput = document.getElementById('promptOutput');
+    const valuationBadge = document.getElementById('valuationBadge');
     const researchBtn = document.getElementById('researchIdolBtn');
-    const generateBtn = document.getElementById('generateBtn');
     const copyBtn = document.getElementById('copyBtn');
 
     /**
-     * PERSISTENCE ENGINE (AUTO-SAVE/LOAD)
+     * AI VALUATION ENGINE
      */
-    const saveState = () => {
-        const state = {
-            name: document.getElementById('fullName').value,
-            dob: document.getElementById('dob').value,
-            idol: document.getElementById('idol').value,
-            ambition: document.getElementById('ambition').value,
-            task: document.getElementById('task').value,
-            format: document.getElementById('format').value,
-            tone: document.getElementById('tone').value,
-            industries: Array.from(document.querySelectorAll('input[name="industry"]:checked')).map(cb => cb.value)
-        };
-        localStorage.setItem('spm_state', JSON.stringify(state));
+    const calculateValuation = (industries, taskLength, idol) => {
+        let baseValue = 49.00; // Base professional grade
+        let industryBonus = industries.length * 25.00;
+        let complexityBonus = (taskLength / 50) * 10.00;
+        let idolBonus = idol ? 30.00 : 0;
+        
+        let total = baseValue + industryBonus + complexityBonus + idolBonus;
+        valuationBadge.innerText = `VALUE: $${total.toFixed(2)} USD`;
+        
+        // Visual feedback
+        valuationBadge.style.animation = 'none';
+        valuationBadge.offsetHeight;
+        valuationBadge.style.animation = 'glow 2s infinite ease-in-out';
     };
 
-    const loadState = () => {
-        const saved = localStorage.getItem('spm_state');
-        if (!saved) return;
-        
-        const state = JSON.parse(saved);
-        if (state.name) document.getElementById('fullName').value = state.name;
-        if (state.dob) document.getElementById('dob').value = state.dob;
-        if (state.idol) document.getElementById('idol').value = state.idol;
-        if (state.ambition) document.getElementById('ambition').value = state.ambition;
-        if (state.task) document.getElementById('task').value = state.task;
-        if (state.format) document.getElementById('format').value = state.format;
-        if (state.tone) document.getElementById('tone').value = state.tone;
-        
-        if (state.industries) {
-            state.industries.forEach(val => {
-                const cb = document.querySelector(`input[value="${val}"]`);
-                if (cb) cb.checked = true;
-            });
-        }
-        
-        // Trigger initial generation if data exists
-        generatePrompt();
-    };
-
-    /**
-     * CORE GENERATION LOGIC
-     */
     const generatePrompt = () => {
         const name = document.getElementById('fullName').value || "USER";
         const dob = document.getElementById('dob').value || "N/A";
@@ -60,64 +34,51 @@ document.addEventListener('DOMContentLoaded', () => {
         const tone = document.getElementById('tone').value;
 
         if (!task || industries.length === 0) {
-            promptOutput.textContent = "$ waiting for input parameters...";
+            promptOutput.textContent = "$ waiting for telemetry...";
+            valuationBadge.innerText = "VALUE: $0.00 USD";
             return;
         }
+
+        calculateValuation(industries, task.length, document.getElementById('idol').value);
 
         const industryStr = industries.join(", ");
         const prompt = `[SYSTEM_PERSONA]
 Role: Expert Consultant in [${industryStr}]
-Model: Philosophical DNA of ${idol}
+DNA: Philosophical Strategy of ${idol}
 
 [USER_CONTEXT]
-Subject: ${name} (${dob})
+Subject: ${name}
+Visi: Global Impact
 
 [OBJECTIVE]
 Task: ${task}
 
-[EXECUTION_FLOW]
+[EXECUTION]
 1. Format: ${format}
 2. Tone: ${tone}
-3. Analysis: Integrate ${idol}'s strategic framework.
+3. Analysis: Higher-order reasoning integrated.
 
-$ system ready. generating...`;
+$ prompt_valuation: success.`;
 
-        promptOutput.style.animation = 'none';
-        promptOutput.offsetHeight; 
-        promptOutput.style.animation = null; 
         promptOutput.textContent = prompt;
     };
 
-    // Initialize State
-    loadState();
-
-    // Event Listeners for Persistence & Preview
     liveInputs.forEach(input => {
-        input.addEventListener('input', () => { 
-            saveState();
-            if (liveToggle.checked) generatePrompt(); 
-        });
-        input.addEventListener('change', () => { 
-            saveState();
-            if (liveToggle.checked) generatePrompt(); 
-        });
+        input.addEventListener('input', () => { if (liveToggle.checked) generatePrompt(); });
+        input.addEventListener('change', () => { if (liveToggle.checked) generatePrompt(); });
     });
 
     researchBtn.addEventListener('click', () => {
         const idol = document.getElementById('idol').value;
         if (!idol) return;
-        promptOutput.textContent = `$ gemini research --target="${idol}" --depth=deep\n\nCommand generated. Researching strategy of ${idol}...`;
+        promptOutput.textContent = `$ gemini analyze --target="${idol}"\n\nResearching economic impact of ${idol}...`;
     });
 
     copyBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(promptOutput.textContent).then(() => {
             const originalText = copyBtn.innerText;
             copyBtn.innerText = "COPIED!";
-            copyBtn.style.background = "#27c93f";
-            setTimeout(() => {
-                copyBtn.innerText = originalText;
-                copyBtn.style.background = "";
-            }, 1000);
+            setTimeout(() => copyBtn.innerText = originalText, 1000);
         });
     });
 });
