@@ -6,59 +6,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const researchBtn = document.getElementById('researchIdolBtn');
     const copyBtn = document.getElementById('copyBtn');
 
-    /**
-     * AI VALUATION ENGINE
-     */
+    // WEALTH ENGINE LOGIC
+    const WEALTH_CORE = `OBJECTIVE: Generate $250 USD Daily.
+LOGIC: Market Arbitrage, High Conversion SaaS, Rapid Digital Synthesis.`;
+
     const calculateValuation = (industries, taskLength, idol) => {
-        let baseValue = 49.00; // Base professional grade
-        let industryBonus = industries.length * 25.00;
-        let complexityBonus = (taskLength / 50) * 10.00;
-        let idolBonus = idol ? 30.00 : 0;
-        
-        let total = baseValue + industryBonus + complexityBonus + idolBonus;
-        valuationBadge.innerText = `VALUE: $${total.toFixed(2)} USD`;
-        
-        // Visual feedback
-        valuationBadge.style.animation = 'none';
-        valuationBadge.offsetHeight;
-        valuationBadge.style.animation = 'glow 2s infinite ease-in-out';
+        let baseValue = 150.00; // Wealth Engine Base
+        let industryBonus = industries.length * 45.00;
+        let complexityBonus = (taskLength / 30) * 15.00;
+        let total = baseValue + industryBonus + complexityBonus;
+        valuationBadge.innerText = `POTENTIAL: $${total.toFixed(2)} USD`;
     };
 
     const generatePrompt = () => {
-        const name = document.getElementById('fullName').value || "USER";
-        const dob = document.getElementById('dob').value || "N/A";
-        const idol = document.getElementById('idol').value || "STRATEGIST";
+        const name = document.getElementById('fullName').value || "SYEIKH";
+        const idol = document.getElementById('idol').value || "SENTINEL";
         const industries = Array.from(document.querySelectorAll('input[name="industry"]:checked')).map(cb => cb.value);
         const task = document.getElementById('task').value;
-        const format = document.getElementById('format').value;
-        const tone = document.getElementById('tone').value;
 
         if (!task || industries.length === 0) {
-            promptOutput.textContent = "$ waiting for telemetry...";
-            valuationBadge.innerText = "VALUE: $0.00 USD";
+            promptOutput.textContent = "$ spm --wealth-engine --awaiting-input";
             return;
         }
 
-        calculateValuation(industries, task.length, document.getElementById('idol').value);
+        calculateValuation(industries, task.length, idol);
 
-        const industryStr = industries.join(", ");
-        const prompt = `[SYSTEM_PERSONA]
-Role: Expert Consultant in [${industryStr}]
-DNA: Philosophical Strategy of ${idol}
+        const prompt = `[ROLE: SPM-WEALTH-SENTINEL]
+Target: $250/Day Milestone.
+DNA: ${idol} Strategy Integration.
 
-[USER_CONTEXT]
-Subject: ${name}
-Visi: Global Impact
+[CONTEXT]
+Owner: ${name}
+Market Cluster: [${industries.join(", ")}]
 
-[OBJECTIVE]
-Task: ${task}
+[MISSION_COMMAND]
+${task}
 
-[EXECUTION]
-1. Format: ${format}
-2. Tone: ${tone}
-3. Analysis: Higher-order reasoning integrated.
+[STRATEGIC_REQUIREMENTS]
+1. Focus on Monetization & Arbitrage.
+2. Provide Blueprint & Conversion Estimation.
+3. ${WEALTH_CORE}
 
-$ prompt_valuation: success.`;
+$ sentinel_report: ready.`;
 
         promptOutput.textContent = prompt;
     };
@@ -70,15 +59,13 @@ $ prompt_valuation: success.`;
 
     researchBtn.addEventListener('click', () => {
         const idol = document.getElementById('idol').value;
-        if (!idol) return;
-        promptOutput.textContent = `$ gemini analyze --target="${idol}"\n\nResearching economic impact of ${idol}...`;
+        promptOutput.textContent = `$ sentinel --research="${idol}" --target-usd=250\n\nCommand: Analyze wealth tactics of ${idol}...`;
     });
 
     copyBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(promptOutput.textContent).then(() => {
-            const originalText = copyBtn.innerText;
             copyBtn.innerText = "COPIED!";
-            setTimeout(() => copyBtn.innerText = originalText, 1000);
+            setTimeout(() => copyBtn.innerText = "COPY", 1000);
         });
     });
 });
