@@ -10,52 +10,56 @@
     <div class="sf-container">
         <nav class="sf-nav">
             <div class="nav-content">
-                <span class="system-status">● SPM SENTINEL v2.9</span>
+                <span class="system-status">● SPM SENTINEL v2.9.5</span>
                 <span class="org-name">State of Protocol</span>
             </div>
         </nav>
 
-        <!-- THE SENTINEL DASHBOARD -->
+        <header class="sf-header">
+            <h1>Syeikh Prompt Master</h1>
+            <p>Wealth Engine & PC Surgeon Interface</p>
+        </header>
+
+        <!-- DASHBOARD & SENTINEL TRACKER -->
         <section class="sf-dashboard card">
             <div class="dash-grid">
                 <div class="dash-item main-goal">
                     <span class="dash-label">📡 REAL-TIME SENTINEL TRACKER</span>
                     <ul class="sentinel-list">
-                        <li>Active Niche: AI Security (CCTV)</li>
-                        <li>Crawl Efficiency: 85% Accuracy</li>
-                        <li>Current Pipeline: $1,760 USD Potential</li>
-                        <li>Daily Sustainability: 1 deal = 2 days target</li>
+                        <li>Active Niche: PC Surgery & Optimization</li>
+                        <li>Latest Report: Clean & Fast (92%)</li>
+                        <li>Current Pipeline: $1,760 USD (Security + Maintenance)</li>
                     </ul>
                 </div>
                 <div class="dash-item">
-                    <span class="dash-label">SYSTEM_UPTIME</span>
+                    <span class="dash-label">PC SURGEON STATUS</span>
+                    <span class="dash-status-online">MODULE_ACTIVE</span>
                     <span id="uptimeCounter" class="dash-value">00:00:00</span>
                 </div>
             </div>
         </section>
 
         <main class="sf-main">
-            <!-- INPUT PARAMETERS -->
+            <!-- PC SURGEON MODULE SECTION -->
             <section class="cli-window">
                 <div class="window-header">
                     <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-                    <div class="window-title">economic_sentinel_logic.esl</div>
+                    <div class="window-title">pc_surgeon_diagnostic.py</div>
                 </div>
                 <div class="window-body">
                     <div class="logic-box">
-                        <label>GOAL: $250 USD / 24 Hours</label>
+                        <label>DIAGNOSTIC LOGIC (S.M.A.R.T)</label>
                         <p class="logic-text">
-                            Arbitrage Detection: If Demand > 70% & Supply < 30%, Price +15%<br>
-                            The $250 Formula: Daily Revenue = (N x P x CR)<br>
-                            Fallback: If Sales < $100 by 6:00 PM, Trigger Aggressive Marketing.
+                            - Usia Hardware > 5 Tahun: Status KRITIKAL (Replacement Advised).<br>
+                            - Usia Hardware > 3 Tahun: Status MODERATE (Service Required).<br>
+                            - Optimization: Temp & Prefetch Janitor Active.
                         </p>
                     </div>
-                    
                     <div class="cli-group">
-                        <label>USER COMMAND (EXECUTE STRATEGY)</label>
+                        <label>COMMAND EXECUTION</label>
                         <div class="cli-input-row">
                             <span class="prompt-char">></span>
-                            <input type="text" id="task" placeholder="e.g: Syeikh, jana proposal untuk SMK Banting..." class="live-input">
+                            <input type="text" id="task" placeholder="e.g: Syeikh, jana sebut harga RAM untuk SMK Banting..." class="live-input">
                         </div>
                     </div>
                 </div>
@@ -64,20 +68,20 @@
             <!-- TERMINAL OUTPUT -->
             <section class="cli-window terminal-window">
                 <div class="window-header">
-                    <div class="window-title">prompt_output.log</div>
+                    <div class="window-title">sentinel_report.log</div>
                     <div class="window-controls">
                         <div id="valuationBadge" class="market-value-badge">VALUE: $0.00 USD</div>
                         <button id="copyBtn" class="cli-btn-primary">COPY</button>
                     </div>
                 </div>
                 <div class="window-body">
-                    <pre id="promptOutput" class="terminal-text">System Synced with /data/cctv_leads.json. Ready for Analysis.</pre>
+                    <pre id="promptOutput" class="terminal-text">Sentinel: Ready. PC Surgeon: Online. Waiting for Syeikh...</pre>
                 </div>
             </section>
         </main>
 
         <footer class="sf-footer">
-            <p>DATA-DRIVEN ENGINE | STATE OF PROTOCOL PROPERTY</p>
+            <p>DESIGNED BY STATE OF PROTOCOL IN CALIFORNIA (VIRTUAL)</p>
         </footer>
     </div>
     <script src="script.js"></script>
