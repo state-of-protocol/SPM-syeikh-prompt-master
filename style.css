@@ -3,80 +3,68 @@
     --window-bg: #ffffff;
     --terminal-bg: #1d1d1f;
     --accent: #0071e3;
-    --price-tag: #27c93f; /* Success Green for Value */
-    --text-main: #1d1d1f;
-    --text-muted: #86868b;
+    --success: #27c93f;
     --border: #d2d2d7;
     --radius: 12px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, sans-serif; background: var(--bg-main); color: #1d1d1f; padding: 20px; }
+.sf-container { max-width: 900px; margin: 60px auto; }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    display: flex;
-    justify-content: center;
-    padding: 0 20px;
+/* DASHBOARD STYLE */
+.sf-dashboard {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: var(--radius);
 }
 
-.sf-container { max-width: 800px; width: 100%; margin-top: 60px; }
-
-/* NAVIGATION & HEADER */
-.sf-nav { position: fixed; top: 0; left: 0; width: 100%; height: 44px; background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 100; }
-.nav-content { display: flex; justify-content: space-between; padding: 12px 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
-.system-status { color: var(--accent); }
-
-.sf-header { text-align: center; margin-bottom: 40px; }
-.sf-header h1 { font-size: 40px; font-weight: 700; letter-spacing: -1px; }
-.sf-header p { color: var(--text-muted); font-size: 18px; }
-
-/* WINDOW UI */
-.cli-window { background: var(--window-bg); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; overflow: hidden; }
-.window-header { background: #fbfbfd; border-bottom: 1px solid var(--border); padding: 10px 15px; display: flex; align-items: center; justify-content: space-between; }
-.window-title { font-size: 10px; color: var(--text-muted); font-family: "SF Mono", monospace; font-weight: 600; }
-
-.window-body { padding: 25px; }
-
-/* VALUATION BADGE (THE NEW COMPONENT) */
-.market-value-badge {
-    background: rgba(39, 201, 63, 0.1);
-    color: var(--price-tag);
-    border: 1px solid var(--price-tag);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-family: "SF Mono", monospace;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    animation: glow 2s infinite ease-in-out;
+.dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    align-items: center;
 }
 
-@keyframes glow {
-    0% { box-shadow: 0 0 5px rgba(39, 201, 63, 0.2); }
-    50% { box-shadow: 0 0 15px rgba(39, 201, 63, 0.4); }
-    100% { box-shadow: 0 0 5px rgba(39, 201, 63, 0.2); }
-}
+.dash-item { display: flex; flex-direction: column; gap: 5px; }
+.dash-label { font-size: 9px; font-weight: 800; color: #86868b; letter-spacing: 1px; }
+.dash-value { font-family: "SF Mono", monospace; font-size: 14px; font-weight: 700; color: var(--accent); }
 
-/* INPUTS */
-.cli-group { margin-bottom: 20px; }
-.cli-group label { display: block; font-size: 9px; font-weight: 800; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 1px; }
-.cli-input-row { display: flex; align-items: center; gap: 10px; }
-input, textarea, select { border: none; border-bottom: 1px solid #eee; font-family: "SF Mono", monospace; font-size: 13px; width: 100%; padding: 5px 0; transition: 0.3s; }
+/* PROGRESS BAR */
+.main-goal { grid-column: span 2; }
+.progress-bar-container {
+    width: 100%; height: 6px; background: #e2e2e7; border-radius: 10px; overflow: hidden; margin: 5px 0;
+}
+.progress-fill {
+    height: 100%; background: var(--accent); width: 0%; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dash-status-online { color: var(--success); font-size: 10px; font-weight: 800; border: 1px solid var(--success); padding: 2px 6px; border-radius: 4px; align-self: flex-start; }
+
+/* WINDOW & CLI STYLES */
+.cli-window { background: white; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.window-header { background: #fbfbfd; border-bottom: 1px solid var(--border); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
+.dots { display: flex; gap: 8px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+.window-title { font-size: 10px; font-family: monospace; color: #86868b; }
+
+.window-body { padding: 20px; }
+.cli-group { margin-bottom: 15px; }
+.cli-group label { display: block; font-size: 9px; font-weight: 800; color: #86868b; margin-bottom: 5px; }
+input, textarea, select { width: 100%; padding: 8px 0; border: none; border-bottom: 1px solid #eee; font-family: monospace; font-size: 13px; }
 input:focus { outline: none; border-bottom-color: var(--accent); }
 
-/* TERMINAL & BUTTONS */
 .terminal-window { background: var(--terminal-bg); border: none; }
-.terminal-text { color: #e2e2e2; font-family: "SF Mono", monospace; font-size: 12px; line-height: 1.6; white-space: pre-wrap; }
-.window-controls { display: flex; align-items: center; gap: 12px; }
-.live-toggle { display: flex; align-items: center; gap: 6px; font-size: 9px; color: #86868b; font-weight: 700; cursor: pointer; }
-.cli-btn-primary { background: var(--accent); color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 10px; font-weight: 600; cursor: pointer; }
+.terminal-text { color: #e2e2e2; font-family: monospace; font-size: 12px; white-space: pre-wrap; line-height: 1.6; }
 
+.market-value-badge { color: var(--success); font-family: monospace; font-size: 10px; font-weight: 800; border: 1px solid var(--success); padding: 3px 8px; border-radius: 4px; }
+.sf-footer { text-align: center; font-size: 9px; color: #86868b; margin-top: 40px; }
+.cli-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 .industry-selector { display: flex; flex-wrap: wrap; gap: 8px; }
-.cli-checkbox { background: #f5f5f7; padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; }
+.cli-checkbox { background: #f5f5f7; padding: 5px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; }
 .cli-checkbox input { display: none; }
 .cli-checkbox input:checked + span { color: var(--accent); font-weight: bold; }
-
-.sf-footer { text-align: center; padding-bottom: 40px; color: var(--text-muted); font-size: 9px; letter-spacing: 1px; }
-.cli-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.cli-btn-primary { background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 10px; cursor: pointer; }
