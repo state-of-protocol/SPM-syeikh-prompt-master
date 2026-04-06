@@ -1,0 +1,49 @@
+{
+  "protocol": "SPM-Economic-Sentinel-v1",
+  "target_niche": "AI-CCTV-Surveillance-Schools",
+  "currency": "USD",
+  "leads": [
+    {
+      "id": "SCH-001",
+      "name": "SMK Banting",
+      "location": "Selangor",
+      "current_system": "Analog / Non-AI",
+      "pain_points": [
+        "Pencerobohan waktu malam",
+        "Pengecaman wajah pelawat manual",
+        "Tiada auto-alert ke Telegram"
+      ],
+      "priority_level": "High",
+      "economic_value": {
+        "setup_fee": 500,
+        "subscription_monthly": 50,
+        "potential_total_annual": 1100
+      },
+      "status": "Crawl_Completed",
+      "next_action": "Generate_AI_Proposal"
+    },
+    {
+      "id": "SCH-002",
+      "name": "SRH Cyberjaya",
+      "location": "Selangor",
+      "current_system": "Digital / IP Camera",
+      "pain_points": [
+        "Data storage tidak efisien",
+        "Perlu integrasi dengan sistem kehadiran"
+      ],
+      "priority_level": "Medium",
+      "economic_value": {
+        "setup_fee": 300,
+        "subscription_monthly": 30,
+        "potential_total_annual": 660
+      },
+      "status": "Lead_Detected",
+      "next_action": "Auto_Email_Outreach"
+    }
+  ],
+  "market_summary": {
+    "total_leads_crawled": 2,
+    "total_potential_usd": 1760,
+    "daily_target_attainable": "YES (Based on 1 Close per week)"
+  }
+}

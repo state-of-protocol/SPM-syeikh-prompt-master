@@ -1,61 +1,61 @@
 import os
 import time
+import requests
+import json
 import google.generativeai as genai
 
 # --- CONFIGURATION ---
-# Pastikan anda set API KEY dalam persekitaran (Environment Variable)
-# atau masukkan secara manual di sini jika perlu.
 API_KEY = os.getenv("GOOGLE_API_KEY") 
 genai.configure(api_key=API_KEY)
 
-# --- THE MASTER PROMPT (SYSTEM INSTRUCTION) ---
+# URL Data Raw dari GitHub Syeikh
+DATA_URL = "https://raw.githubusercontent.com/state-of-protocol/SPM-syeikh-prompt-master/main/data/cctv_leads.json"
+
 MASTER_PROMPT = """
 ROLE: Autonomous Wealth Engine & Economic Sentinel (SPM-v1).
 OBJECTIVE: Menjana $250 USD sehari melalui produk digital/SaaS.
-CORE LOGIC:
-1. SENSE OF ECONOMICS: Analisis trend pasaran real-time (Arbitrage, Demand, Supply).
-2. FALLBACK SYSTEM: Jika satu niche gagal, automatik beralih ke niche digital seterusnya.
-3. VALUATION: Kira potensi USD berdasarkan (Volume x Conversion Rate).
-4. OUTPUT: Berikan (A) Trend Terkini, (B) Blueprint Produk, (C) Estimasi Masa untuk Capai $250.
-STRICT RULE: Minimalist, Professional, dan Fokus pada Monetization.
+CORE LOGIC (Economic Sentinel Logic):
+1. Formula: Daily Revenue = (N x P x CR).
+2. Priority Niche: AI Security (CCTV) for Schools.
+3. Target: SMK Banting (High Potential) & SRH Cyberjaya.
+4. Strategy: Gunakan 'Pain-Point Targeted Outreach' (PPTO).
+STRICT RULE: Minimalist, Data-Driven, dan Fokus pada Monetization.
 """
+
+def get_economic_context():
+    try:
+        # Sedut Data Leads secara Real-Time dari GitHub
+        response = requests.get(DATA_URL, timeout=10)
+        leads_data = response.json()
+        return f"\n[CURRENT_DATA_SYNC]:\n{json.dumps(leads_data, indent=2)}"
+    except Exception as e:
+        return f"\n[OFFLINE_MODE]: Gagal sync data ({e}). Menggunakan logic $250/day standard."
 
 def spm_wealth_engine():
     print("\n" + "="*60)
-    print("🕋 SPM WEALTH ENGINE (Target: $250/Day) - STATE OF PROTOCOL")
+    print("🕋 SPM WEALTH SENTINEL v2.9 - DATA-DRIVEN MODE")
     print("="*60)
-    
-    target_usd = 250
-    current_earnings = 0 
     
     model = genai.GenerativeModel('gemini-1.5-flash')
     
     while True:
-        print(f"\n[STATUS]: ${current_earnings} / ${target_usd} USD")
-        user_input = input("Syeikh (Arahan/Idea/Status): ")
+        # Sync data sebelum setiap arahan
+        context = get_economic_context()
+        print(f"\n📡 [SPM] Data Synced: {len(context)} bytes")
         
-        if user_input.lower() in ['exit', 'quit']: 
-            print("Sentinel Offline. Strategi disimpan.")
-            break
+        user_input = input("Syeikh (Arahan Strategi): ")
+        if user_input.lower() in ['exit', 'quit']: break
         
         try:
-            full_prompt = f"{MASTER_PROMPT}\n\nUSER COMMAND: {user_input}\n\nPROSES SEKARANG:"
+            full_prompt = f"{MASTER_PROMPT}\n{context}\n\nUSER COMMAND: {user_input}\n\nPROSES SEKARANG:"
             
             response = model.generate_content(full_prompt)
-            
-            output = response.text
             print("\n" + "-"*50)
-            print(f"🤖 SPM SENTINEL REPORT:\n")
-            print(output)
+            print(f"🤖 SPM SENTINEL REPORT:\n{response.text}")
             print("-"*50)
             
         except Exception as e:
-            err = str(e)
-            if "429" in err:
-                print("⚠️ [Quota 429]: Sistem sesak. Rehat 60 saat...")
-                time.sleep(60)
-            else:
-                print(f"❌ Ralat: {e}")
+            print(f"❌ Ralat: {e}")
 
 if __name__ == "__main__":
     spm_wealth_engine()

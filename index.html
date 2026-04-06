@@ -10,114 +10,74 @@
     <div class="sf-container">
         <nav class="sf-nav">
             <div class="nav-content">
-                <span class="system-status">● SPM ENTERPRISE v2.8</span>
+                <span class="system-status">● SPM SENTINEL v2.9</span>
                 <span class="org-name">State of Protocol</span>
             </div>
         </nav>
 
-        <header class="sf-header">
-            <h1>Syeikh Prompt Master</h1>
-            <p>Autonomous Wealth Generation Interface</p>
-        </header>
-
-        <!-- ENTERPRISE DASHBOARD -->
+        <!-- THE SENTINEL DASHBOARD -->
         <section class="sf-dashboard card">
             <div class="dash-grid">
+                <div class="dash-item main-goal">
+                    <span class="dash-label">📡 REAL-TIME SENTINEL TRACKER</span>
+                    <ul class="sentinel-list">
+                        <li>Active Niche: AI Security (CCTV)</li>
+                        <li>Crawl Efficiency: 85% Accuracy</li>
+                        <li>Current Pipeline: $1,760 USD Potential</li>
+                        <li>Daily Sustainability: 1 deal = 2 days target</li>
+                    </ul>
+                </div>
                 <div class="dash-item">
                     <span class="dash-label">SYSTEM_UPTIME</span>
                     <span id="uptimeCounter" class="dash-value">00:00:00</span>
-                </div>
-                <div class="dash-item main-goal">
-                    <span class="dash-label">DAILY_GOAL ($250 TARGET)</span>
-                    <div class="progress-bar-container">
-                        <div id="goalProgress" class="progress-fill" style="width: 0%;"></div>
-                    </div>
-                    <span id="goalPercent" class="dash-value">0%</span>
-                </div>
-                <div class="dash-item">
-                    <span class="dash-label">PROMPT_ROI</span>
-                    <span id="roiValue" class="dash-value">+0.0%</span>
-                </div>
-                <div class="dash-item">
-                    <span class="dash-label">SENTINEL_SYNC</span>
-                    <span class="dash-status-online">SECURE_SSL</span>
                 </div>
             </div>
         </section>
 
         <main class="sf-main">
+            <!-- INPUT PARAMETERS -->
             <section class="cli-window">
                 <div class="window-header">
                     <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-                    <div class="window-title">input_parameters.sh</div>
+                    <div class="window-title">economic_sentinel_logic.esl</div>
                 </div>
                 <div class="window-body">
+                    <div class="logic-box">
+                        <label>GOAL: $250 USD / 24 Hours</label>
+                        <p class="logic-text">
+                            Arbitrage Detection: If Demand > 70% & Supply < 30%, Price +15%<br>
+                            The $250 Formula: Daily Revenue = (N x P x CR)<br>
+                            Fallback: If Sales < $100 by 6:00 PM, Trigger Aggressive Marketing.
+                        </p>
+                    </div>
+                    
                     <div class="cli-group">
-                        <label>IDENTITI PENGGUNA</label>
+                        <label>USER COMMAND (EXECUTE STRATEGY)</label>
                         <div class="cli-input-row">
-                            <span class="prompt-char">~</span>
-                            <input type="text" id="fullName" placeholder="Nama Penuh" class="live-input">
-                        </div>
-                    </div>
-                    <div class="cli-group">
-                        <label>RUJUKAN STRATEGIK (IDOLA)</label>
-                        <div class="cli-input-row">
-                            <span class="prompt-char">#</span>
-                            <input type="text" id="idol" placeholder="Elon Musk / Tun M" class="live-input">
-                            <button id="researchIdolBtn" class="cli-btn-action">SEARCH</button>
-                        </div>
-                    </div>
-                    <div class="cli-group">
-                        <label>BIDANG INDUSTRI (TICK MODE)</label>
-                        <div class="industry-selector">
-                            <label class="cli-checkbox"><input type="checkbox" name="industry" value="Digital & AI" class="live-check"> <span>Digital & AI</span></label>
-                            <label class="cli-checkbox"><input type="checkbox" name="industry" value="FinTech" class="live-check"> <span>FinTech</span></label>
-                            <label class="cli-checkbox"><input type="checkbox" name="industry" value="GreenTech" class="live-check"> <span>GreenTech</span></label>
-                            <label class="cli-checkbox"><input type="checkbox" name="industry" value="Cybersecurity" class="live-check"> <span>Cybersecurity</span></label>
-                            <label class="cli-checkbox"><input type="checkbox" name="industry" value="Global Strategy" class="live-check"> <span>Strategy</span></label>
-                        </div>
-                    </div>
-                    <div class="cli-group">
-                        <label>TUGASAN UTAMA</label>
-                        <textarea id="task" placeholder="Huraikan tugasan anda..." class="live-input"></textarea>
-                    </div>
-                    <div class="cli-group">
-                        <div class="cli-grid-2">
-                            <select id="format" class="live-input">
-                                <option value="Step-by-Step">--format=step</option>
-                                <option value="Table">--format=table</option>
-                                <option value="Analytical">--format=essay</option>
-                            </select>
-                            <select id="tone" class="live-input">
-                                <option value="Professional">--tone=pro</option>
-                                <option value="Creative">--tone=creative</option>
-                                <option value="Technical">--tone=tech</option>
-                            </select>
+                            <span class="prompt-char">></span>
+                            <input type="text" id="task" placeholder="e.g: Syeikh, jana proposal untuk SMK Banting..." class="live-input">
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- TERMINAL OUTPUT -->
             <section class="cli-window terminal-window">
                 <div class="window-header">
                     <div class="window-title">prompt_output.log</div>
                     <div class="window-controls">
                         <div id="valuationBadge" class="market-value-badge">VALUE: $0.00 USD</div>
-                        <label class="live-toggle">
-                            <input type="checkbox" id="liveToggle" checked>
-                            <span class="toggle-text">LIVE</span>
-                        </label>
                         <button id="copyBtn" class="cli-btn-primary">COPY</button>
                     </div>
                 </div>
                 <div class="window-body">
-                    <pre id="promptOutput" class="terminal-text">System initialization complete. Ready for Syeikh Command.</pre>
+                    <pre id="promptOutput" class="terminal-text">System Synced with /data/cctv_leads.json. Ready for Analysis.</pre>
                 </div>
             </section>
         </main>
 
         <footer class="sf-footer">
-            <p>DESIGNED BY STATE OF PROTOCOL | ENTERPRISE GRADE PERSISTENCE</p>
+            <p>DATA-DRIVEN ENGINE | STATE OF PROTOCOL PROPERTY</p>
         </footer>
     </div>
     <script src="script.js"></script>
