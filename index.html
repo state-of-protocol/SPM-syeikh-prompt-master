@@ -3,85 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPM | Syeikh Prompt Master</title>
+    <title>SPM | Syeikh Prompt Master v3.0</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="sf-container">
+    <div class="app-shell">
+        <!-- GLOBAL STATUS BAR -->
         <nav class="sf-nav">
             <div class="nav-content">
-                <span class="system-status">● SPM SENTINEL v2.9.5</span>
-                <span class="org-name">State of Protocol</span>
+                <span class="status-indicator">● SPM_SENTINEL_ACTIVE</span>
+                <span class="system-time" id="uptimeCounter">00:00:00</span>
             </div>
         </nav>
 
-        <header class="sf-header">
-            <h1>Syeikh Prompt Master</h1>
-            <p>Wealth Engine & PC Surgeon Interface</p>
-        </header>
-
-        <!-- DASHBOARD & SENTINEL TRACKER -->
-        <section class="sf-dashboard card">
+        <!-- STRATEGIC DASHBOARD -->
+        <header class="sf-dashboard card">
             <div class="dash-grid">
-                <div class="dash-item main-goal">
-                    <span class="dash-label">📡 REAL-TIME SENTINEL TRACKER</span>
-                    <ul class="sentinel-list">
-                        <li>Active Niche: PC Surgery & Optimization</li>
-                        <li>Latest Report: Clean & Fast (92%)</li>
-                        <li>Current Pipeline: $1,760 USD (Security + Maintenance)</li>
-                    </ul>
+                <div class="stat-box">
+                    <label>DAILY_TARGET</label>
+                    <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+                    <span id="progressText" class="value">$250.00 USD</span>
                 </div>
-                <div class="dash-item">
-                    <span class="dash-label">PC SURGEON STATUS</span>
-                    <span class="dash-status-online">MODULE_ACTIVE</span>
-                    <span id="uptimeCounter" class="dash-value">00:00:00</span>
+                <div class="stat-box">
+                    <label>ACTIVE_NICHE</label>
+                    <span class="value accent">AI_SURGEON</span>
+                </div>
+                <div class="stat-box">
+                    <label>PIPELINE_VALUE</label>
+                    <span id="valuationBadge" class="value green">$0.00</span>
                 </div>
             </div>
-        </section>
+        </header>
 
         <main class="sf-main">
-            <!-- PC SURGEON MODULE SECTION -->
-            <section class="cli-window">
-                <div class="window-header">
-                    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-                    <div class="window-title">pc_surgeon_diagnostic.py</div>
+            <!-- UNIFIED INPUT MODULE -->
+            <section class="cli-container card">
+                <div class="cli-header">
+                    <div class="cli-dots"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+                    <span class="cli-title">terminal.spm</span>
                 </div>
-                <div class="window-body">
-                    <div class="logic-box">
-                        <label>DIAGNOSTIC LOGIC (S.M.A.R.T)</label>
-                        <p class="logic-text">
-                            - Usia Hardware > 5 Tahun: Status KRITIKAL (Replacement Advised).<br>
-                            - Usia Hardware > 3 Tahun: Status MODERATE (Service Required).<br>
-                            - Optimization: Temp & Prefetch Janitor Active.
-                        </p>
+                <div class="cli-body">
+                    <div class="input-group">
+                        <label>STRATEGIC_COMMAND</label>
+                        <div class="cli-row">
+                            <span class="char">></span>
+                            <input type="text" id="task" placeholder="Execute command..." class="live-input">
+                        </div>
                     </div>
-                    <div class="cli-group">
-                        <label>COMMAND EXECUTION</label>
-                        <div class="cli-input-row">
-                            <span class="prompt-char">></span>
-                            <input type="text" id="task" placeholder="e.g: Syeikh, jana sebut harga RAM untuk SMK Banting..." class="live-input">
+                    
+                    <div class="options-grid">
+                        <div class="option-item">
+                            <label>PERSONA</label>
+                            <input type="text" id="idol" placeholder="Elon Musk" class="live-input small">
+                        </div>
+                        <div class="option-item">
+                            <label>INDUSTRY_TICK</label>
+                            <div class="tick-group">
+                                <label class="tick"><input type="checkbox" name="industry" value="Digital" class="live-check"> <span>Digi</span></label>
+                                <label class="tick"><input type="checkbox" name="industry" value="Fintech" class="live-check"> <span>Fin</span></label>
+                                <label class="tick"><input type="checkbox" name="industry" value="AI" class="live-check"> <span>AI</span></label>
+                                <label class="tick"><input type="checkbox" name="industry" value="Cyber" class="live-check"> <span>Cyber</span></label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- TERMINAL OUTPUT -->
-            <section class="cli-window terminal-window">
-                <div class="window-header">
-                    <div class="window-title">sentinel_report.log</div>
-                    <div class="window-controls">
-                        <div id="valuationBadge" class="market-value-badge">VALUE: $0.00 USD</div>
-                        <button id="copyBtn" class="cli-btn-primary">COPY</button>
-                    </div>
+            <!-- CONSOLE OUTPUT -->
+            <section class="console-container card">
+                <div class="console-header">
+                    <span class="console-title">output_stream.log</span>
+                    <button id="copyBtn" class="btn-copy">COPY_RAW</button>
                 </div>
-                <div class="window-body">
-                    <pre id="promptOutput" class="terminal-text">Sentinel: Ready. PC Surgeon: Online. Waiting for Syeikh...</pre>
+                <div class="console-body">
+                    <pre id="promptOutput" class="console-text">$ initialization successful. sentinel online.</pre>
                 </div>
             </section>
         </main>
 
         <footer class="sf-footer">
-            <p>DESIGNED BY STATE OF PROTOCOL IN CALIFORNIA (VIRTUAL)</p>
+            <p>DESIGNED BY STATE OF PROTOCOL | LEAN & MEAN EDITION</p>
         </footer>
     </div>
     <script src="script.js"></script>

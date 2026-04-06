@@ -1,86 +1,87 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Elements
     const liveInputs = document.querySelectorAll('.live-input, .live-check');
-    const liveToggle = document.getElementById('liveToggle');
     const promptOutput = document.getElementById('promptOutput');
     const valuationBadge = document.getElementById('valuationBadge');
-    const copyBtn = document.getElementById('copyBtn');
-    
-    // Dashboard Elements
+    const progressFill = document.getElementById('progressFill');
     const uptimeCounter = document.getElementById('uptimeCounter');
-    const goalProgress = document.getElementById('goalProgress');
-    const goalPercent = document.getElementById('goalPercent');
-    const roiValue = document.getElementById('roiValue');
+    const copyBtn = document.getElementById('copyBtn');
 
-    /**
-     * UPTIME CLOCK
-     */
-    let seconds = 0;
-    setInterval(() => {
-        seconds++;
-        let hrs = Math.floor(seconds / 3600).toString().padStart(2, '0');
-        let mins = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-        let secs = (seconds % 60).toString().padStart(2, '0');
-        uptimeCounter.textContent = `${hrs}:${mins}:${secs}`;
-    }, 1000);
-
-    /**
-     * TELEMETRY UPDATE
-     */
-    const updateDashboard = (value) => {
-        const target = 250;
-        const percentage = Math.min((value / target) * 100, 100).toFixed(1);
-        
-        goalProgress.style.width = `${percentage}%`;
-        goalPercent.textContent = `${percentage}%`;
-        
-        // ROI Calculation (Simulated for Investor)
-        const roi = (value / 49 * 100).toFixed(1);
-        roiValue.textContent = `+${roi}%`;
+    // State Persistence
+    const saveState = () => {
+        const state = {
+            task: document.getElementById('task').value,
+            idol: document.getElementById('idol').value,
+            inds: Array.from(document.querySelectorAll('input[name="industry"]:checked')).map(cb => cb.value)
+        };
+        localStorage.setItem('spm_v3', JSON.stringify(state));
     };
 
-    const generatePrompt = () => {
-        const industries = Array.from(document.querySelectorAll('input[name="industry"]:checked')).map(cb => cb.value);
-        const task = document.getElementById('task').value;
-        const idol = document.getElementById('idol').value || "STRATEGIST";
+    const loadState = () => {
+        const saved = JSON.parse(localStorage.getItem('spm_v3'));
+        if (!saved) return;
+        document.getElementById('task').value = saved.task || "";
+        document.getElementById('idol').value = saved.idol || "";
+        if (saved.inds) {
+            saved.inds.forEach(v => {
+                const cb = document.querySelector(`input[value="${v}"]`);
+                if (cb) cb.checked = true;
+            });
+        }
+        generate();
+    };
 
-        if (!task || industries.length === 0) {
-            promptOutput.textContent = "$ awaiting telemetry data...";
-            valuationBadge.innerText = "VALUE: $0.00 USD";
-            updateDashboard(0);
+    // Uptime
+    let secs = 0;
+    setInterval(() => {
+        secs++;
+        const h = Math.floor(secs/3600).toString().padStart(2,'0');
+        const m = Math.floor((secs%3600)/60).toString().padStart(2,'0');
+        const s = (secs%60).toString().padStart(2,'0');
+        uptimeCounter.textContent = `${h}:${m}:${s}`;
+    }, 1000);
+
+    // Generation & Valuation
+    const generate = () => {
+        const task = document.getElementById('task').value;
+        const idol = document.getElementById('idol').value || "SENTINEL";
+        const inds = Array.from(document.querySelectorAll('input[name="industry"]:checked')).map(cb => cb.value);
+
+        if (!task || inds.length === 0) {
+            promptOutput.textContent = "$ spm --awaiting-input";
+            valuationBadge.textContent = "$0.00";
+            progressFill.style.width = "0%";
             return;
         }
 
-        // Calculate Value
-        let total = 49.00 + (industries.length * 25.00) + (task.length / 5);
-        valuationBadge.innerText = `VALUE: $${total.toFixed(2)} USD`;
-        updateDashboard(total);
+        const value = 150 + (inds.length * 45) + (task.length / 5);
+        valuationBadge.textContent = `$${value.toFixed(2)}`;
+        progressFill.style.width = `${Math.min((value/250)*100, 100)}%`;
 
-        const prompt = `[SYSTEM_ENTERPRISE_SENTINEL]
-Role: Hybrid Strategist [${industries.join(", ")}]
-Base Model: ${idol} Logic Engine
+        promptOutput.textContent = `[SPM_COMMAND_INIT]
+DNA: ${idol} Logic
+CLUSTER: [${inds.join(", ")}]
+TASK: ${task}
 
-[MISSION]
-${task}
+[SENTINEL_OVERRIDE]
+1. Target: $250/Day.
+2. Focus: Monetization & Efficiency.
+3. Output: Industrial Grade.
 
-[TELEMETRY_STATUS]
-- Target Goal: $250.00
-- Est. Value: $${total.toFixed(2)}
-- Protocol: Secure SSL Sync
-
-$ generating high-impact response...`;
-
-        promptOutput.textContent = prompt;
+$ executing_strategy...`;
     };
 
-    liveInputs.forEach(input => {
-        input.addEventListener('input', () => { if (liveToggle.checked) generatePrompt(); });
-        input.addEventListener('change', () => { if (liveToggle.checked) generatePrompt(); });
+    liveInputs.forEach(i => {
+        i.addEventListener('input', () => { saveState(); generate(); });
+        i.addEventListener('change', () => { saveState(); generate(); });
     });
 
     copyBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(promptOutput.textContent).then(() => {
-            copyBtn.innerText = "COPIED!";
-            setTimeout(() => copyBtn.innerText = "COPY", 1000);
+            copyBtn.textContent = "COPIED!";
+            setTimeout(() => copyBtn.textContent = "COPY_RAW", 1000);
         });
     });
+
+    loadState();
 });
